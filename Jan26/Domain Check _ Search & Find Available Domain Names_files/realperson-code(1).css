@@ -1,0 +1,46 @@
+@import url(../../default/css/realperson-code.css);
+
+div#optiRealPersonChatContentBorder.roundBottomCorner {
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+}
+
+div#optiRealPersonChatContentBorder {
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	width: 393px;
+}
+
+div#optiRealPersonChatContentBorder div.realperson-layer-header {
+	position: relative;
+	height: 45px;
+	background-color: #134094;
+}
+
+div#optiRealPersonChatContentBorder div.realperson-layer-header div.realperson-chat-icon {
+	position: inherit;
+	top: 0;
+	left: 0;
+	background-image: url(../img/1und1-logo.jpg) !important;
+	display: inline-block;
+	height: 25px;
+	width: 25px;
+	margin: 10px 0 10px 15px;
+	background-repeat: no-repeat;
+	background-position: center center;
+	
+}
+
+div#optiRealPersonChatContentBorder div.realperson-layer-header div.realperson-chat-title {
+	display: inline-block;
+	font-size: 18px;
+	line-height: 45px;
+	margin-left: 10px;
+	padding: 0;
+}
+
+div#optiRealPersonChatContentBorder div.realperson-layer-header div.realperson-chat-buttons {
+	line-height: 45px;
+}

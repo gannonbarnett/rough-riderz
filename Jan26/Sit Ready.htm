@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<!-- saved from url=(0099)file:///Users/gannonbarnett/Desktop/Sublime%20things/SitReadyWeb/raceView.html?code=mjvqamcgpyjbpcc -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  	
+
+  	<title>Sit Ready</title>
+
+	<style>
+		body {
+			background-color: lightblue;
+			z-index: 0; 
+		}
+		
+		.inputBox {
+			position: absolute;
+			width: 300px;
+			height: 300px;
+			background-color: lightblue; 
+			z-index: 1;
+			margin: -150px 0 0 -150px;
+			padding: 0px;
+			top: 50%;
+  			left: 50%;
+		}
+    	
+    	.form {
+    		width: 295px;
+    		height: 50px;
+    		line-height: 50px;
+    		font-size: 30px;
+    		text-align: center;
+    	}
+    	
+    	.button {
+   	 		background-color: #4CAF50;
+    		border: none;
+    		color: white;
+    		padding: 15px 32px;
+    		text-align: center;
+    		text-decoration: none;
+    		display: inline-block;
+    		font-size: 16px;
+    		margin: 4px 2px;
+    		margin-top: 50px;
+    		cursor: pointer;
+    	}
+    	
+    	div {
+    		text-align: center;
+    	}
+    	
+    	#raceTable {
+    		height: 30px;  
+    		border-collapse: collapse;
+    	}
+    	
+    	#raceTable td, #raceTable th {
+    		border: 1px solid #ddd;
+    		padding: 8px;
+		}
+
+    	#raceTable tr:hover td {
+    		background-color: #ddd;
+    	}
+
+    	th{
+    		background-color: lightgreen; 
+    		padding: 15px; 
+    	}
+    	
+    	#raceTable tr {
+    		font-size: 20px;
+    	}
+    	
+    	#raceTable tr:nth-child(even) {
+    		background-color: #eee;
+		}
+		
+		#raceTable tr:nth-child(odd) {
+    		background-color: #fff;
+		}
+		
+		.raceDataBox {
+			margin: 30px;
+			padding: 10px; 
+		}
+		
+		.raceName {
+			text-align: center;
+		}
+    </style> 
+</head>
+
+<body>
+   	<script src="./Sit Ready_files/firebase-app.js"></script>
+	<script src="./Sit Ready_files/firebase-auth.js"></script>
+	<script src="./Sit Ready_files/firebase-database.js"></script>
+	<script src="./Sit Ready_files/firebase-firestore.js"></script>
+	<script src="./Sit Ready_files/firebase-messaging.js"></script>
+	
+	<div id="topNavBar"> 
+		<button onclick="linkHome()"> Back </button>
+	</div> 
+	<h1 id="raceName" class="raceName">SitReady will rise</h1> 
+	<div id="raceData" class="raceDataBox"> 
+	
+		<table id="raceTable" style="width:100%">
+	  		<tbody><tr>
+	  			<th>BOW</th>
+	  			<th>TIME</th>
+	    		<th>START TIME</th>
+	    		<th>FINISH TIME</th> 
+	    		<th>PLACE</th>
+	  		</tr>
+		</tbody><tr><td>1</td><td>01:88.33</td><td>13:02:11.70</td><td>13:03:40.04</td><td>2</td></tr><tr><td>2</td><td>01:87.59</td><td>13:02:13.18</td><td>13:03:40.77</td><td>9</td></tr><tr><td>3</td><td>01:85.80</td><td>13:02:13.56</td><td>13:03:39.36</td><td>4</td></tr><tr><td>4</td><td>00:13.00</td><td>13:02:12.70</td><td>13:02:25.71</td><td>5</td></tr><tr><td>5</td><td>00:59.88</td><td>13:02:24.38</td><td>13:03:24.27</td><td>6</td></tr><tr><td>6</td><td>01:60.67</td><td>13:02:24.06</td><td>13:03:24.73</td><td>7</td></tr><tr><td>7</td><td>01:62.45</td><td>13:02:21.29</td><td>13:03:23.74</td><td>8</td></tr><tr><td>8</td><td>01:65.44</td><td>13:02:22.16</td><td>13:03:27.59</td><td>1</td></tr><tr><td>9</td><td>01:66.92</td><td>13:02:21.79</td><td>13:03:28.72</td><td>10</td></tr><tr><td>10</td><td>01:68.62</td><td>13:02:20.34</td><td>13:03:28.96</td><td>11</td></tr><tr><td>11</td><td>01:70.87</td><td>13:02:17.31</td><td>13:03:28.18</td><td>12</td></tr><tr><td>12</td><td>01:78.51</td><td>13:02:19.18</td><td>13:03:37.70</td><td>13</td></tr><tr><td>13</td><td>01:80.32</td><td>13:02:17.68</td><td>13:03:37.99</td><td>14</td></tr><tr><td>14</td><td>01:80.83</td><td>13:02:16.38</td><td>13:03:37.21</td><td>15</td></tr><tr><td>15</td><td>00:00.44</td><td>13:03:35.99</td><td>13:03:36.43</td><td>3</td></tr></table>
+	</div> 
+
+	<script> 
+  		    
+  		//configure firebase
+    	var config = {
+    		apiKey: "AIzaSyDUItJUI94xZ895uRpLLO_5Utj-wip-itM",
+    		authDomain: "headracer-v3.firebaseapp.com",
+    		databaseURL: "https://headracer-v3.firebaseio.com/",
+    		storageBucket: "gs://headracer-v3.appspot.com"
+  		};
+
+		firebase.initializeApp(config);
+  		// Get a reference to the database service
+  		var database = firebase.database()
+  		
+  		var raceCode = "";
+  		var raceInformation = [];
+  		
+  		var raceInformation = [];
+  		getRaceCode(); 
+  		 
+  		var creatorName = ''; 
+  		var dateCreated = '';
+  		var raceName = '';  
+  		var numberEntries = 0; 
+  		var times = [[]]; 
+  		var placeArray = []; 
+  		
+  		const referenceDate_translationVALUE = 978307200000;
+  		
+  		getRaceInformation(); 
+  		
+  		//functions 
+  		function getRaceCode(){
+       		var query = window.location.search.substring(1);
+       		var vars = query.split("&");
+       		for (i = 0; i < vars.length; i++) {
+       			var kvp = query.split("=");
+       			if (kvp[0] == "code") {
+       				raceCode = kvp[1]; 
+       				console.log('race code found as:' + raceCode);
+       			};
+       		};
+       		console.log(vars);
+		};
+		
+		function getRaceInformation() {
+			return firebase.database().ref().once('value').then(function(snapshot) {
+				raceInformation = snapshot.child('Races').child(raceCode).val();
+				
+				creatorName = raceInformation.CreatorName; 
+				dateCreated = raceInformation.dateCreated; 
+				raceName = raceInformation.Name; 
+				numberEntries = raceInformation.NumberEntries; 
+				for (i = 0; i < numberEntries; i++) {
+					const startDate = new Date(raceInformation.Times[i].StartTime * 1000 + referenceDate_translationVALUE); 
+					const finishDate = new Date(raceInformation.Times[i].FinishTime * 1000 + referenceDate_translationVALUE);
+					const elapsedTime_Milli = (finishDate.getTime() - startDate.getTime()); 
+					times[i] = [startDate, finishDate, elapsedTime_Milli]; 
+				};
+				
+				calcPlaces(); 
+				var place = 1; 
+				
+				for (i = 0; i < numberEntries; i++) {
+					const index = placeArray[i][0];
+					times[index][3] = place; 
+					place ++; 
+				};
+				
+				updatePageInformation(); 
+				return snapshot.child('Races').child(raceCode).val();
+			});
+		}; 
+		
+		function assembleTable() {
+			addRow(['1', '12:30', '13:30', '1']);
+		};
+		
+		function addRow(timeArray){
+			
+			if (!document.getElementsByTagName) return;
+			
+			tableBody = document.getElementById('raceTable');
+			row = document.createElement("tr");
+	    	bowCell = document.createElement("td");
+	    	timeCell = document.createElement("td");
+	        startCell = document.createElement("td");
+		    finishCell = document.createElement("td");
+			placeCell = document.createElement("td");
+		         
+		    bowTextNode = document.createTextNode(timeArray[0]);
+		    timeTextNode = document.createTextNode(timeArray[1]);
+	        startTextNode = document.createTextNode(timeArray[2]);
+	    	finishTextNode = document.createTextNode(timeArray[3]);
+		    placeTextNode = document.createTextNode(timeArray[4]);
+		         
+		    bowCell.appendChild(bowTextNode);
+		    timeCell.appendChild(timeTextNode); 
+	        startCell.appendChild(startTextNode);
+	        finishCell.appendChild(finishTextNode);
+		    placeCell.appendChild(placeTextNode);
+
+		    row.appendChild(bowCell);
+		    row.appendChild(timeCell);
+	        row.appendChild(startCell);
+	        row.appendChild(finishCell);
+		    row.appendChild(placeCell);
+
+		    tableBody.appendChild(row);
+		};
+	
+
+		function updatePageInformation() {
+			document.getElementById('raceName').innerHTML = raceName;
+			for (i = 0; i < numberEntries; i++) {
+				addRow([i + 1,  formatTime(times[i][2]), formatDate(times[i][0]), formatDate(times[i][1]), times[i][3]]); 
+			};
+		};
+		
+		function formatDate(date) {
+			var hours = date.getHours(); 
+			var minutes = date.getMinutes(); 
+			var seconds = date.getSeconds(); 
+			var tenths = Math.round(date.getMilliseconds() / 10); 
+			if (minutes < 10) {
+				minutes = '0' + minutes
+			};
+			
+			if (seconds < 10) {
+				seconds = '0' + seconds
+			};
+			
+			if (tenths < 10) {
+				tenths = '0' + tenths
+			};
+			return hours + ':' + minutes + ':' + seconds + '.' + tenths; 
+		};
+		
+		function formatTime(milli) {
+			var tenths = Math.round((milli % 1000) / 10); 
+			var seconds = Math.floor(milli / 1000); 
+			var minutes = Math.floor((milli / 1000) / 60); 
+			var hours = Math.floor(((milli / 1000) / 60) / 60); 
+			
+			if (hours == 0) {
+				hours = ''
+			}else {
+				hours =  hours + ':'
+			}
+			
+			if (seconds < 10) {
+				seconds = '0' + seconds
+			};
+			
+			if (minutes < 10) {
+				minutes = '0' + minutes
+			};
+			
+						
+			if (tenths < 10) {
+				tenths = '0' + tenths
+			};
+			
+			return hours + minutes + ':' + seconds + '.' + tenths; 
+		}; 
+		
+		
+		function calcPlaces() {
+			var elapsedTimes = []; 
+			for(i = 0; i < times.length; i++) {
+				elapsedTimes.push({i: times[i][2]});
+			}
+			
+			var items = Object.keys(elapsedTimes).map(function(key) {
+    			return [key, elapsedTimes[key]];
+			});
+
+			// Sort the array based on the second element
+			items.sort(function(first, second) {
+    			return second[1] - first[1];
+			});
+			
+			placeArray = quickSort(items, 0, items.length - 1); 
+			
+						
+		};
+		
+		function quickSort(arr, left, right){
+   			var len = arr.length, pivot, partitionIndex;
+
+
+  			if(left < right){
+    			pivot = right;
+    			partitionIndex = partition(arr, pivot, left, right);
+    
+   				//sort left and right
+   				quickSort(arr, left, partitionIndex - 1);
+   				quickSort(arr, partitionIndex + 1, right);
+  			}
+  			return arr;
+		}
+		
+		function partition(arr, pivot, left, right){
+   			var pivotValue = arr[pivot][1],
+       			partitionIndex = left;
+
+   			for(var i = left; i < right; i++){
+    			if(arr[i][1] < pivotValue){
+      			swap(arr, i, partitionIndex);
+      			partitionIndex++;
+    			}
+  			}
+  			swap(arr, right, partitionIndex);
+  			return partitionIndex;
+		};
+
+		function swap(arr, i, j){
+   			var temp = arr[i];
+   			arr[i] = arr[j];
+   			arr[j] = temp;
+		};
+
+		function linkHome() {
+			window.location.href = 'file:///Users/gannonbarnett/Desktop/Sublime%20things/SitReadyWeb/index.html'
+		};
+	</script> 
+
+</body></html>

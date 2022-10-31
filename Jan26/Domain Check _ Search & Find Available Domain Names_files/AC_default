@@ -1,0 +1,1 @@
+(function(w,k,d) {w[k]=(w[k]||[]).concat(d||[])})(window,'JASMIN_DEPENDENCIES',[])
